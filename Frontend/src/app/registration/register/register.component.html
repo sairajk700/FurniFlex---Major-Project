@@ -22,7 +22,7 @@
 
 
                     <div *ngIf=" firstname.invalid && firstname.touched" class="invalid-feedback">
-                        <div *ngIf="firstname.errors?.['required']">First Name is required</div>
+                        <div *ngIf="firstname.errors?.['required']" class="error">First Name is required</div>
                         <div *ngIf="firstname.errors?.['minlength'] || firstname.errors?.['maxlength']">
                             First Name must be between 3 and 20 characters
                         </div>

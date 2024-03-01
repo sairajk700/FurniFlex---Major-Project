@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegistrationRoutingModule } from './registration-routing.module';
 import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,8 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    RegisterComponent,
-    LoginComponent
+    RegisterComponent
   ],
   imports: [
     CommonModule,
@@ -20,8 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   exports:[
-    RegisterComponent,
-    LoginComponent
+    RegisterComponent
   ],
   providers:[
     AuthService
