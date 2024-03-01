@@ -36,10 +36,10 @@
               
 
               <div class="mb-3">
-                  <label for="confirmpassword" class="form-label">Confirm Password:</label>
+                  <label for="confirmpassword" class="form-label">Password:</label>
                   <input type="password" class="form-control" id="password" placeholder="Confirm password"
                       name="confirmpassword" required minlength="8" maxlength="20" [(ngModel)]="form.confirmpassword"
-                      #confirmpassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && newpassword.invalid }"
+                      #confirmpassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && confirmpassword.invalid }"
                       pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" />
 
 
@@ -47,20 +47,13 @@
                       class="invalid-feedback">
                       <div *ngIf="confirmpassword.errors?.['required']">Confirm Password is required</div>
                       <div *ngIf="confirmpassword.invalid" class="invalid-feedback">
-                          <div *ngIf="confirmpassword.errors?.['mismatch']">Password confirmation does not match</div>
                       </div>
                   </div>
               </div>
 
               <button type="submit" class="btn submit-btn" (click)="onSubmit()">Create account</button>
           </form>
-          <!-- <p class="hr-lines"> OR </p> -->
-          <!-- <div class="social-sign-up">
-              <button class="btn social"><i class="fa-brands fa-google"></i> Sign up with Google</button>
-          </div> -->
-          <div class="sign-in">
-              <p>Already have an account? <a href="#">Log in</a></p>
-          </div>
+          
       </div>
   </main>
 </div>
