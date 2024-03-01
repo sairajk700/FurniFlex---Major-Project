@@ -34,7 +34,6 @@ body {
   form .form-control {
     background-color: #e5e2e9;
     opacity: 0.7;
-    margin-bottom: 1.5em;
     width: 300px;
   }
   form .submit-btn {
@@ -98,4 +97,12 @@ body {
   .sign-in {
     margin: 1em 0;
     text-align: center;
+  }
+
+  .invalid-feedback{
+    color:red;
+  }
+
+  .error{
+    margin-top:2px;
   }
