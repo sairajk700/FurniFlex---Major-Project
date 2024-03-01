@@ -1,0 +1,66 @@
+<div class="container">
+  <header class="row text-center">
+      <div class="col logo">
+          <img src="../../images/furniflex-high-resolution-logo.png"
+              alt="goodreads-logo" />
+      </div>
+  </header>
+  <main class="main row">
+      <div class="left col">
+          <img src="https://img.freepik.com/premium-vector/young-woman-enjoy-sitting-reading-book-hygge-concept-vector-illustration_194708-2078.jpg"
+              alt="girl-reading-a-book" />
+      </div>
+      <div class="right col">
+          <form class="sign-up" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
+              <h4>Login</h4>
+
+              
+
+              <div class="mb-3">
+                  <label class="form-label" for="emailAddress">Email Id:</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Email Id" required minlength="3"
+                      maxlength="20" [(ngModel)]="form.email" #email="ngModel"
+                      [ngClass]="{ 'is-invalid': f.submitted && email.invalid }">
+
+
+                  <div *ngIf=" email.invalid && email.touched" class="invalid-feedback">
+                      <div *ngIf="email.errors?.['required']">Email is required</div>
+                      <div *ngIf="email.errors?.['minlength'] || email.errors?.['maxlength']">
+                          Email must be a valid email address
+                      </div>
+                  </div>
+              </div>
+
+              
+
+              
+
+              <div class="mb-3">
+                  <label for="confirmpassword" class="form-label">Confirm Password:</label>
+                  <input type="password" class="form-control" id="password" placeholder="Confirm password"
+                      name="confirmpassword" required minlength="8" maxlength="20" [(ngModel)]="form.confirmpassword"
+                      #confirmpassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && newpassword.invalid }"
+                      pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" />
+
+
+                  <div *ngIf="confirmpassword.invalid && (confirmpassword.dirty || confirmpassword.touched)"
+                      class="invalid-feedback">
+                      <div *ngIf="confirmpassword.errors?.['required']">Confirm Password is required</div>
+                      <div *ngIf="confirmpassword.invalid" class="invalid-feedback">
+                          <div *ngIf="confirmpassword.errors?.['mismatch']">Password confirmation does not match</div>
+                      </div>
+                  </div>
+              </div>
+
+              <button type="submit" class="btn submit-btn" (click)="onSubmit()">Create account</button>
+          </form>
+          <!-- <p class="hr-lines"> OR </p> -->
+          <!-- <div class="social-sign-up">
+              <button class="btn social"><i class="fa-brands fa-google"></i> Sign up with Google</button>
+          </div> -->
+          <div class="sign-in">
+              <p>Already have an account? <a href="#">Log in</a></p>
+          </div>
+      </div>
+  </main>
+</div>
