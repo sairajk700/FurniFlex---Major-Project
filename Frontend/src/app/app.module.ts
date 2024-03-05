@@ -7,13 +7,15 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WishlistComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,
