@@ -1,44 +1,98 @@
+
 body {
-  background: rgb(99, 39, 120)
+  background-color: rgb(210, 217, 221);
+}
+
+.container {
+  background: #ffffff;
+  padding: 20px; 
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0; 
+  width: 700px;
+  margin: auto; 
+  margin-top: 10px; 
+}
+
+
+
+.form-label {
+  margin-bottom: 0.8rem;
+  font-weight: 600; 
+  color: #495057; 
+}
+
+.form-control {
+  border-radius: 8px; 
+  border: 1px solid #ced4da;
+  padding: 0.5rem 1rem; 
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; 
+
 }
 
 .form-control:focus {
-  box-shadow: none;
-  border-color: #BA68C8
+  border-color: #80bdff; 
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); 
 }
 
-.profile-button {
-  background: rgb(99, 39, 120);
-  box-shadow: none;
-  border: none
-}
-
-.profile-button:hover {
-  background: #682773
-}
-
-.profile-button:focus {
-  background: #682773;
-  box-shadow: none
-}
-
-.profile-button:active {
-  background: #682773;
-  box-shadow: none
-}
-
-.back:hover {
-  color: #682773;
-  cursor: pointer
-}
-
-.labels {
-  font-size: 11px
-}
-
-.add-experience:hover {
-  background: #BA68C8;
+.btn-primary {
   color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 0.5rem 1rem; 
+  border-radius: 8px; 
   cursor: pointer;
-  border: solid 1px #BA68C8
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; 
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.profile-icon {
+  font-size: 100px; 
+  margin-bottom: 25px;
+  color: #17a2b8; 
+  margin-left: auto; 
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+}
+
+
+.card {
+  background: linear-gradient(145deg, #f9f9f9, #ffffff); 
+  border-radius: 12px; 
+  padding: 20px; 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
+  border: none; 
+}
+
+.card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); 
+}
+
+.card-header, .card-body {
+  padding: 20px; 
+}
+
+.card-title {
+  margin-bottom: 15px; 
+  color: #007bff; 
+  font-weight: bold; 
+}
+
+h3{
+    text-align: center;
+    color: grey;
+    margin-bottom: 30px;
+}
+
+.col-md-8{
+  width: 80%;
 }
