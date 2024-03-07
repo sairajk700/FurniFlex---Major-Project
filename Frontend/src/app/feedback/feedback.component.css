@@ -7,6 +7,7 @@
   .feedback h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: #3ab5c4;
   }
   
   .feedback .comment textarea {
@@ -24,15 +25,19 @@
   }
   
   .feedback .submit button {
+    display: inline-block;
     padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
+    background-color: #3ab5c4;
+    color: white; 
+    text-decoration: none; 
     border-radius: 5px;
-    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 2px;
   }
   
   .feedback .submit button:hover {
-    background-color: #0056b3;
+    background-color: white; 
+    color: #3ab5c4;
+    border: 1px solid #3ab5c4;
   }
   
