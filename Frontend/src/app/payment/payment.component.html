@@ -1,0 +1,41 @@
+<app-header></app-header>
+<h1>Payment Options</h1>
+<div class="payment-container">
+    
+
+    <div class="debitcard">
+        <h2>Debit Card Details</h2>
+        <input type="text" placeholder="Name on Card">
+        <input type="text" placeholder="Card Number">
+        <div class="expiry-date">
+            <label>Expiry Date</label>
+            <select>
+                <option disabled selected>Month</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            <select>
+                <option disabled selected>Year</option>
+                <option value="2022">2024</option>
+                <option value="2023">2025</option>
+                <option value="2022">2026</option>
+                <option value="2023">2027</option>
+            </select>
+        </div>
+        <input type="text" placeholder="CVV">
+    </div>
+
+    <button class="btn-pay">Pay Now</button>
+</div>
+
+<app-footer></app-footer>
