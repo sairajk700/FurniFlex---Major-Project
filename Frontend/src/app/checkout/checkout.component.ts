@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
-export class CheckoutComponent {
-  
-  constructor() { }
+export class CheckoutComponent  {
 
-  onSubmit() {
-    // Here you would typically handle the form submission,
-    // such as validating input data, and then submitting the order details to your backend.
-    console.log("Order submitted!");
-  }
+  // totalBillingAmount: number;
+  
+  // constructor((private cartService: CartService)) {}
+    
+  //   ngOnInit(): void {
+  //     this.totalBillingAmount = this.cartService.calculateTotalBillingAmount();
+  //   }
 
 }
