@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { ProductCreateComponent } from './product-create/product-create.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 
 @NgModule({
   declarations: [
-    ProductCreateComponent
+    ProductCreateComponent,
+    ProductListComponent
   ],
   imports: [
     CommonModule,
