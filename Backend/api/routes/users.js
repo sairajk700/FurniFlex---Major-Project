@@ -1,38 +1,40 @@
 const express = require('express');
 const router = express.Router();
-const {check, validationResult} = require('express-validator/check');
+const { check, validationResult } = require('express-validator');
 const bcrypt = require("bcrypt");
 const mongoose = require('mongoose');
 
 const User = require('../models/user');
 const UserController = require('../controllers/user');
 
-//get all users data
+// Get all users data
 router.get('/', UserController.all_users);
 
-//logout
+// Logout
 router.get('/:userId/logout', UserController.user_logout);
 
-//login
+// Login
 router.post('/login', UserController.user_login);
 
-//delete user
+// Delete user
 router.delete('/:userId', UserController.user_delete);
 
-//update user name & phone number
+// Update user name & phone number
 router.put('/:userId', UserController.user_update);
 
-//register new user
+// Register new user
 router.post('/signup', [
-  check('name').not().isEmpty().withMessage('name cannot be empty'),
-  check('email').matches(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).withMessage('your email is invalid'),
-  check('phoneNumber').matches(/^\d+$/).withMessage('must contain a numbers only'),
-  check('password').matches(/^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/).withMessage('must contain at least 8 chars, a combination of letters and numbers')
+  check('name').not().isEmpty().withMessage('Name cannot be empty'),
+  check('email').isEmail().withMessage('Invalid email address'),
+  check('phoneNumber').isNumeric().withMessage('Phone number must contain only numbers'),
+  check('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters long')
+    .matches(/^(?=.*\d)(?=.*[a-zA-Z])/).withMessage('Password must contain at least one letter and one number')
 ], UserController.user_signup);
 
-//change password
+// Change password
 router.post('/:userId/change', [
-  check('password').matches(/^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/).withMessage('must contain at least 8 chars, a combination of letters and numbers')],
-UserController.change_password);
+  check('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters long')
+    .matches(/^(?=.*\d)(?=.*[a-zA-Z])/).withMessage('Password must contain at least one letter and one number')
+], UserController.change_password);
 
 module.exports = router;
