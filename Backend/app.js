@@ -4,52 +4,55 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const expressValidator = require('express-validator');
-const session = require('express-session')
-require('dotenv').config()
+const session = require('express-session');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 
-const usersRoutes = require('./api/routes/users');
-
-mongoose.connect('mongodb://localhost:27017/trial');
-
-// app.use(express.static('public'));
-
-app.use(cors());
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-app.use(expressValidator());
-app.use(session( {
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: false
-}));
-
-//home page
-app.get('/', (req, res, next) => {
-  const localTime = (new Date()).toLocaleTimeString();
-
-  res.status(200).send(`hello gigel user! server run start on ${localTime}.`)
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/trial', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
-//Routes to handle request
+// Middleware
+app.use(cors());
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(expressValidator());
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: false,
+}));
+
+// Routes
+const usersRoutes = require('./api/routes/users');
 app.use('/user', usersRoutes);
 
-// catch 404
+// Home page route
+app.get('/', (req, res) => {
+  const localTime = new Date().toLocaleTimeString();
+  res.status(200).send(`Hello gigel user! Server started at ${localTime}.`);
+});
+
+// Handle 404 errors
 app.use((req, res, next) => {
-  const error = new Error('this route is not available, please back to home');
+  const error = new Error('This route is not available. Please go back to the home page.');
   error.status = 404;
   next(error);
 });
 
-// error handler
+// Error handler
 app.use((error, req, res, next) => {
-  res.status(error.status || 500);
-  res.json({
+  res.status(error.status || 500).json({
     error: {
-      message: error.message
-    }
+      message: error.message || 'Internal Server Error',
+    },
   });
 });
 
