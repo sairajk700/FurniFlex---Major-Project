@@ -3,24 +3,48 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WishlistComponent } from './wishlist/wishlist.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import { CookieService } from 'ngx-cookie-service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { HomeComponent } from './Components/home/home.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { HeaderComponent } from './Components/header/header.component';
+// import { RegisterComponent } from './Components/register/register.component';
+// import { LoginComponent } from './Components/login/login.component';
+import { ProductsComponent } from './Components/products/products.component';
+import { SingleProductComponent } from './Components/single-product/single-product.component';
+import { CartComponent } from './Components/cart/cart.component';
+import { WishlistComponent } from './Components/wishlist/wishlist.component';
+import { FeedbackComponent } from './Components/feedback/feedback.component';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WishlistComponent,
+    HomeComponent,
+    FooterComponent,
     HeaderComponent,
-    FooterComponent
+    // RegisterComponent,
+    // LoginComponent,
+    ProductsComponent,
+    SingleProductComponent,
+    CartComponent,
+    WishlistComponent,
+    FeedbackComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    CookieService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
