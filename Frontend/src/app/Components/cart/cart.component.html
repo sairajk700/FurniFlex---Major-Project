@@ -9,7 +9,7 @@
   }
 </style>
 
-<!--
+
 <body>
   <div class="h-screen bg-gray-100 pt-20">
     <h1 class="mb-10 text-center text-2xl font-bold">Cart Items</h1>
@@ -83,7 +83,7 @@
   </div>
 </body>
 
- -->
+
 
 
 <!-- 
@@ -117,71 +117,4 @@
 </div> -->
 
 
-<div class="bg-gray-100 h-screen py-20">
-  <div class="container mx-auto px-6">
-      <h1 class="text-2xl font-bold mb-10 text-center">Cart Items</h1>
-      <div class="flex flex-col md:flex-row gap-6">
-          <div class="md:w-3/4">
-              <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                  <table class="w-full text-sm">
-                      <thead>
-                          <tr class="text-left font-semibold">
-                              <th>Product</th>
-                              <th>Subscription</th>
-                              <th>Quantity</th>
-                              <th>Total</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr *ngFor="let item of cartItems" class="border-b">
-                              <td class="py-4">
-                                  <div class="flex items-center">
-                                      <img [src]="getImageUrl(item.product.images[0])" class="h-16 w-16 mr-4 rounded" alt="product-image">
-                                      <span>{{ item.product.name }}</span>
-                                  </div>
-                              </td>
-                              <td class="py-4">$ {{ item.subscription.monthlyPrice }}/mo for {{ item.subscription.duration }} Months</td>
-                              <td class="py-4">
-                                  <div class="flex items-center justify-center">
-                                      <!-- <button class="border rounded-md py-1 px-3 mr-2" (click)="decreaseQuantity(item)">-</button>
-                                      <span>{{ item.quantity }}</span>
-                                      <button class="border rounded-md py-1 px-3 ml-2" (click)="increaseQuantity(item)">+</button> -->
 
-                                      <button class="border rounded-md py-1 px-3 mr-2">-</button>
-                                      <span>{{ item.quantity }}</span>
-                                      <button class="border rounded-md py-1 px-3 ml-2">+</button>
-                                  </div>
-                              </td>
-                              <td class="py-4">$ {{ item.totalPrice }}</td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
-          </div>
-          <div class="md:w-1/4">
-              <div class="bg-white rounded-lg shadow-md p-6">
-                  <h2 class="text-lg font-bold mb-4">Summary</h2>
-                  <!-- Assuming taxes and shipping are fixed for simplification -->
-                  <div class="flex justify-between mb-2">
-                      <span>Subtotal</span>
-                      <span>$ {{ totalCartPrice }}</span>
-                  </div>
-                  <div class="flex justify-between mb-2">
-                      <span>Taxes</span>
-                      <span>$1.99</span>
-                  </div>
-                  <div class="flex justify-between mb-2">
-                      <span>Shipping</span>
-                      <span>Free</span>
-                  </div>
-                  <hr class="my-4">
-                  <div class="flex justify-between mb-4">
-                      <span class="font-bold">Total</span>
-                      <span class="font-bold">$ {{ totalCartPrice + 1.99 }}</span>
-                  </div>
-                  <button class="w-full rounded-md bg-blue-500 py-2 text-white font-medium hover:bg-blue-600">Check out</button>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
