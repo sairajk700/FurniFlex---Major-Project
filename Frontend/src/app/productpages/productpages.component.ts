@@ -6,5 +6,21 @@ import { Component } from '@angular/core';
   styleUrl: './productpages.component.css'
 })
 export class ProductpagesComponent {
+  products: Product[] = [];
+
+  constructor(private productService: ProductService) { }
+
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe(products => {
+
+      
+      this.products = products;
+    });
+  }
+
+}
+
+
+
 
 }
