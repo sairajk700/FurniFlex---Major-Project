@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -27,6 +28,20 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  }
+});
+
+// Pre-save hook to hash the password before saving
+userSchema.pre('save', async function(next) {
+  try {
+    if (!this.isModified('password')) {
+      return next();
+    }
+    const hashedPassword = await bcrypt.hash(this.password, 10);
+    this.password = hashedPassword;
+    next();
+  } catch (error) {
+    next(error);
   }
 });
 
