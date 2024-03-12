@@ -1,38 +1,45 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router'; // Import Router
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  form: any={
-    email: null,
-    newpassword: null
-  };
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router 
+  ) {}
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  onSubmit(): void {
-    const { email, password } = this.form;
-
-    this.authService.login(email, password).subscribe({
-      next: () => {
-        this.isLoggedIn = true;
-        this.isLoginFailed = false;
-        this.router.navigate(['/dashboard']); // Navigate to dashboard or any other page after successful login
-      },
-      error: err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      }
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(20)]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$')]]
     });
   }
 
+  onSubmit() {
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
+        next: (response) => {
+          this.authService.setUserData(response.token, response.user.role);
+
+          if (response.user.role === 'admin') {
+            this.router.navigate(['/admin']); 
+          } else {
+            this.router.navigate(['/home']);
+          }
+        },
+        error: (error) => {
+          console.error('Login error:', error);
+        }
+      });
+    }
+  }
 }
