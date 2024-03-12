@@ -1,132 +1,58 @@
-<div class="container">
-    <header class="row text-center">
-        <div class="col logo">
-            <img src="../../images/furniflex-high-resolution-logo.png"
-                alt="goodreads-logo" />
-        </div>
-    </header>
-    <main class="main row">
-        <div class="left col">
-            <img src="https://img.freepik.com/premium-vector/young-woman-enjoy-sitting-reading-book-hygge-concept-vector-illustration_194708-2078.jpg"
-                alt="girl-reading-a-book" />
-        </div>
-        <div class="right col">
-            <form class="sign-up" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
-                <h4>Sign Up</h4>
-
-                <div class="mb-3">
-                    <label class="form-label" for="firstName">First Name:</label>
-                    <input type="text" class="form-control" id="email" name="firstname" placeholder="First Name" required minlength="3"
-                        maxlength="20" [(ngModel)]="form.firstname" #firstname="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && firstname.invalid }">
-
-
-                    <div *ngIf=" firstname.invalid && firstname.touched" class="invalid-feedback">
-                        <div *ngIf="firstname.errors?.['required']">First Name is required</div>
-                        <div *ngIf="firstname.errors?.['minlength'] || firstname.errors?.['maxlength']">
-                            First Name must be between 3 and 20 characters
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="lastName">Last Name:</label>
-                    <input type="text" class="form-control" id="email" name="lastname" placeholder="Last Name" required minlength="3"
-                        maxlength="20" [(ngModel)]="form.lastname" #lastname="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && lastname.invalid }">
-
-
-                    <div *ngIf=" lastname.invalid && lastname.touched" class="invalid-feedback">
-                        <div *ngIf="lastname.errors?.['required']">Last Name is required</div>
-                        <div *ngIf="lastname.errors?.['minlength'] || lastname.errors?.['maxlength']">
-                            Last Name must be between 3 and 20 characters
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="emailAddress">Email Id:</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Id" required minlength="3"
-                        maxlength="20" [(ngModel)]="form.email" #email="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && email.invalid }">
-
-
-                    <div *ngIf=" email.invalid && email.touched" class="invalid-feedback">
-                        <div *ngIf="email.errors?.['required']">Email is required</div>
-                        <div *ngIf="email.errors?.['minlength'] || email.errors?.['maxlength']">
-                            Email must be a valid email address
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="phoneNumber">Phone Number:</label>
-                    <input type="tel" class="form-control" id="email" name="phoneNumber" placeholder="Phone Number" [(ngModel)]="form.phonenumber"
-                        #phonenumber="ngModel" [ngClass]="{ 'is-invalid': f.submitted && phonenumber.invalid }"
-                        minlength="10" maxlength="10" required pattern="^\d+$" (keypress)="onKeyPress($event)">
-
-
-                    <div *ngIf="phonenumber.invalid && (phonenumber.dirty || phonenumber.touched)"
-                        class="invalid-feedback">
-                        <div *ngIf="phonenumber.errors?.['required']">Phone number is required</div>
-                        <div *ngIf="phonenumber.errors?.['minlength'] || phonenumber.errors?.['maxlength']">Phone number
-                            must be 10 digits</div>
-                        <div *ngIf="phonenumber.errors?.['pattern']">Please enter a valid phone number</div>
-                        <div *ngIf="phonenumber.errors?.['invalidPhoneNumber']">Phone number must contain only numeric
-                            characters</div>
-
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="newpassword" class="form-label">New Password:</label>
-                    <input type="password" class="form-control" id="password" placeholder="New password"
-                        name="newpassword" required minlength="8" maxlength="20" [(ngModel)]="form.newpassword"
-                        #newpassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && newpassword.invalid }"
-                        pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" />
-
-
-                    <div *ngIf="newpassword.invalid && (newpassword.dirty || newpassword.touched)"
-                        class="invalid-feedback">
-                        <div *ngIf="newpassword.errors?.['required']">New Password is required</div>
-                        <div *ngIf="newpassword.invalid" class="invalid-feedback">
-                            <div *ngIf="newpassword.errors?.['minlength'] || newpassword.errors?.['maxlength']">
-                                Password must be between 8 and 20 characters
-                            </div>
-                            <div *ngIf="newpassword.errors?.['pattern']">
-                                Password must contain at least one uppercase letter, one lowercase letter, one number,
-                                and one special character
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="confirmpassword" class="form-label">Confirm Password:</label>
-                    <input type="password" class="form-control" id="password" placeholder="Confirm password"
-                        name="confirmpassword" required minlength="8" maxlength="20" [(ngModel)]="form.confirmpassword"
-                        #confirmpassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && newpassword.invalid }"
-                        pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" />
-
-
-                    <div *ngIf="confirmpassword.invalid && (confirmpassword.dirty || confirmpassword.touched)"
-                        class="invalid-feedback">
-                        <div *ngIf="confirmpassword.errors?.['required']">Confirm Password is required</div>
-                        <div *ngIf="confirmpassword.invalid" class="invalid-feedback">
-                            <div *ngIf="confirmpassword.errors?.['mismatch']">Password confirmation does not match</div>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn submit-btn" (click)="onSubmit()">Create account</button>
-            </form>
-            <!-- <p class="hr-lines"> OR </p> -->
-            <!-- <div class="social-sign-up">
-                <button class="btn social"><i class="fa-brands fa-google"></i> Sign up with Google</button>
-            </div> -->
-            <div class="sign-in">
-                <p>Already have an account? <a href="#">Log in</a></p>
+<div class="flex h-screen w-full items-center justify-center bg-gray-100">
+    <div class="max-w-md w-full overflow-hidden rounded-lg bg-white shadow-lg">
+      <div class="p-8">
+        <h1 class="text-3xl font-black text-slate-700">Register</h1>
+        <p class="mt-2 mb-5 text-base leading-tight text-gray-600">Create an account</p>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-8">
+          <div class="relative mt-2 w-full">
+            <input type="text" formControlName="firstName" class="peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" placeholder="First Name" />
+            <label class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600">First Name</label>
+            <div *ngIf="registerForm.controls['firstName'].touched && registerForm.controls['firstName'].invalid" class="text-red-500 text-sm mt-1">
+              <div *ngIf="registerForm.controls['firstName'].errors?.['required']">First name is required.</div>
+              <div *ngIf="registerForm.controls['firstName'].errors?.['minlength'] || registerForm.controls['firstName'].errors?.['maxlength']">First name must be between 3 and 20 characters.</div>
             </div>
-        </div>
-    </main>
-</div>
+          </div>
+          <div class="relative mt-2 w-full">
+            <input type="text" formControlName="lastName" class="peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" placeholder="Last Name" />
+            <label class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600">Last Name</label>
+            <div *ngIf="registerForm.controls['lastName'].touched && registerForm.controls['lastName'].invalid" class="text-red-500 text-sm mt-1">
+              <div *ngIf="registerForm.controls['lastName'].errors?.['required']">Last name is required.</div>
+              <div *ngIf="registerForm.controls['lastName'].errors?.['minlength'] || registerForm.controls['lastName'].errors?.['maxlength']">Last name must be between 3 and 20 characters.</div>
+            </div>
+          </div>
+          <div class="relative mt-2 w-full">
+            <input type="email" formControlName="email" class="peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" placeholder="Email" />
+            <label class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600">Email</label>
+            <div *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].invalid" class="text-red-500 text-sm mt-1">
+              <div *ngIf="registerForm.controls['email'].errors?.['required']">Email is required.</div>
+              <div *ngIf="registerForm.controls['email'].errors?.['email']">Please enter a valid email address.</div>
+              <div *ngIf="registerForm.controls['email'].errors?.['minlength'] || registerForm.controls['email'].errors?.['maxlength']">Email must be between 3 and 20 characters.</div>
+            </div>
+          </div>
+          <div class="relative mt-2 w-full">
+            <input type="text" formControlName="phoneNo" class="peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" placeholder="Phone No" />
+            <label class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600">Phone No</label>
+            <div *ngIf="registerForm.controls['phoneNo'].touched && registerForm.controls['phoneNo'].invalid" class="text-red-500 text-sm mt-1">
+              <div *ngIf="registerForm.controls['phoneNo'].errors?.['required']">Phone number is required.</div>
+              <div *ngIf="registerForm.controls['phoneNo'].errors?.['pattern']">Please enter a valid phone number.</div>
+              <div *ngIf="registerForm.controls['phoneNo'].errors?.['minlength'] || registerForm.controls['phoneNo'].errors?.['maxlength']">Phone number must be 10 digits.</div>
+            </div>
+          </div>
+          <div class="relative mt-2 w-full">
+            <input type="password" formControlName="password" class="peer block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" placeholder="Password" />
+            <label class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-75 transform cursor-text select-none bg-white px-2 text-sm text-gray-500 duration-300 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600">Password</label>
+            <div *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].invalid" class="text-red-500 text-sm mt-1">
+              <div *ngIf="registerForm.controls['password'].errors?.['required']">Password is required.</div>
+              <div *ngIf="registerForm.controls['password'].errors?.['minlength'] || registerForm.controls['password'].errors?.['maxlength']">Password must be between 8 and 20 characters.</div>
+              <div *ngIf="registerForm.controls['password'].errors?.['pattern']">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.</div>
+            </div>
+          </div>
+          <input class="mt-4 w-full cursor-pointer rounded-lg bg-blue-600 pt-3 pb-3 text-white shadow-lg hover:bg-blue-400" type="submit" value="Create account" />
+        </form>
+        <div class="mt-4 text-center">
+            <p class="text-sm text-gray-600">Already have an account? <a routerLink="/login" class="font-bold text-blue-600 no-underline hover:text-blue-400">Sign in</a></p>
+          </div>          
+      </div>
+    </div>
+  </div>
+  

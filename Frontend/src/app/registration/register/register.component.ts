@@ -1,71 +1,43 @@
-import { Component} from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../Services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent{
-  form: any = {
-    firstname: null,
-    lastname: null,
-    email: null,
-    phonenumber: null,
-    newpassword: null,
-    confirmpassword: null
-  };
-  isSuccessful = false;
-  isSignUpFailed = false;
-  errorMessage = '';
-  phonenumber: any;
-  confirmpassword: any;
-  authService: any;
+export class RegisterComponent implements OnInit {
+  registerForm!: FormGroup;
 
-  
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  onSubmit(): void {
-    console.log("Submitted");
-
-    const { firstname, lastname, email, phonenumber, newpassword, confirmpassword } = this.form;
-
-    this.authService.register(firstname, lastname, email, phonenumber, newpassword, confirmpassword).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-      },
-      error: (err: { error: { message: string; }; }) => {
-        this.errorMessage = err.error.message;
-        this.isSignUpFailed = true;
-      }
+  ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      email: ['', [Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(20)]],
+      phoneNo: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$')]]
     });
   }
 
-  onKeyPress(event: KeyboardEvent) {
-    const char = String.fromCharCode(event.charCode);
-    if (!/\d/.test(char)) {
-      event.preventDefault();
+  onSubmit() {
+    if (this.registerForm.valid) {
+      this.authService.register(this.registerForm.value).subscribe({
+        next: (response) => {
+          console.log('Registration successful', response);
+          this.router.navigate(['/home']);
+        },
+        error: (error) => {
+          console.error('Registration failed', error);
+        }
+      });
     }
   }
-
-
-  // checkPasswordMatch() {
-
-  //   // console.log(typeof(newpassword));
-  //   // if (confirmedPassword !== newpassword) {
-  //   //   this.confirmpassword.errors = { ...this.confirmpassword.errors, 'mismatch': true };
-  //   // } else {
-  //   //   // if (this.confirmpassword.errors && this.confirmpassword.errors['mismatch']) {
-  //   //   //   delete this.confirmpassword.errors['mismatch'];
-  //   //   if(confirmedPassword == newpassword){
-  //   //     this.confirmpassword= { ...this.confirmpassword.errors, 'mismatch': true
-  //   //   }
-
-  //   //   }
-  //   // }
-
-  
-
-
 }
