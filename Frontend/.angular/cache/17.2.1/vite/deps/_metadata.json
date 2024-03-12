@@ -20,6 +20,7 @@
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
       "fileHash": "0d3f61cb",
+
       "needsInterop": false
     },
     "@angular/forms": {
@@ -31,6 +32,7 @@
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
+
       "fileHash": "436f6145",
       "needsInterop": false
     },
@@ -38,6 +40,7 @@
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
       "fileHash": "ff80d19c",
+
       "needsInterop": false
     }
   },
