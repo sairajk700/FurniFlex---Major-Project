@@ -1,0 +1,6 @@
+projectKey=FurniFlex_FrontEnd_28907
+serverUrl=http://172.27.12.78:8000
+serverVersion=7.9.6.41879
+dashboardUrl=http://172.27.12.78:8000/dashboard?id=FurniFlex_FrontEnd_28907
+ceTaskId=AY42pANS02ASefZCyh9W
+ceTaskUrl=http://172.27.12.78:8000/api/ce/task?id=AY42pANS02ASefZCyh9W
